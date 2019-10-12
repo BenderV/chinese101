@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chinese 101</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<style type="text/css">
+    div {
+    float: left;
+  }
+  .table {
+    width: auto;
+  }
+  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 2px;
+  }
+
+</style>
+<body>
+
+</body>
+
+<script type="text/javascript">
+    // Parse local CSV file
+    var themes = {
+      'activity': [],
+      'drink': [],
+      'location': [],
+      'transport': [],
+      'adjective': [],
+      'family': [],
+      'measure': [],
+      'position': [],
+      'verb': [],
+      'clothes': [],
+      'food': [],
+      'number': [],
+      'school': [],
+      'color': [],
+      'fruit': [],
+      'other': [],
+      'time': []
+    };
+
+    Object.keys(themes).forEach(function (theme) {
+      Papa.parse('csv/' + theme + '.csv', {
+        download: true,
+        complete: function(results) {
+          console.log("Finished:", results.data);
+          themes[theme] = results.data;
+
+
+          var table = '<div><i>' + theme + '</i>' + '<table class="table" id=' + theme + '>';
+          for (var i = 0; i < results.data.length; i++) {
+            table += '<tr><td>' + results.data[i].join('</td><td>') + '</td></tr>';
+          };
+          table += '</table></div>'
+          $('body').append(table)
+        }
+      });      
+    });
+
+    
+</script>
+</html>
