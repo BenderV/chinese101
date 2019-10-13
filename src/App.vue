@@ -62,7 +62,7 @@ export default {
     selectNextWord: function() {
       for (var i = 10; i >= 0; i--) { // try 10 times
         let word = _.sample(this.selectedWords)
-        if (word.id != this.selectedWord.id) {
+        if (word != this.selectedWord) {
           this.selectedWord = word;
           break;
         }
@@ -70,7 +70,7 @@ export default {
     },
     getColor: function(value) {
       //value from 0 to 1
-      var hue=((1-value)*120).toString(10);
+      var hue=((1-value) * 120).toString(10);
       return ["hsl(",hue,",100%,50%)"].join("");
     },
     calculColorGradient: function(score) {
