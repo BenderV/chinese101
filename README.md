@@ -27,3 +27,8 @@ yarn run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# TODO/NEXT/IDEAS
+* Display if success or error.
+* If error, display letters in random order as a hint
+* Add images

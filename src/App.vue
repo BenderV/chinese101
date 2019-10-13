@@ -14,7 +14,7 @@
             />
             <Asker
               v-bind:key="word.id"
-              v-show="word==selectedWord"
+              v-if="word==selectedWord"
               :word="word" :next="next"
               v-for="word in selectedWords" 
             />
@@ -62,8 +62,9 @@ export default {
     selectNextWord: function() {
       for (var i = 10; i >= 0; i--) { // try 10 times
         let word = _.sample(this.selectedWords)
-        if (word != this.selectedWord) {
+        if (word.id != this.selectedWord.id) {
           this.selectedWord = word;
+          break;
         }
       }
     },
